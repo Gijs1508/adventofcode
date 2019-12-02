@@ -1,3 +1,5 @@
+import copy
+
 def OpenBestand():
     with open('input.txt', 'r') as file:
         for line in file:
@@ -29,23 +31,21 @@ def machine(getallen, indexGetal1, indexGetal2):
         elif(getallen[index] == 99):
             result = getallen[0]
             break
-    return result
+    return result, getallen[1], getallen[2]
 
 def main():
     getallen = OpenBestand()
     for x in range(99*99):
         y = x//99
         z = x%100
-        result = machine(getallen, y, z, restart)
+        result, getal1, getal2 = machine(getallen.copy(), y, z)
         if result == 19690720:
-            print(f"output: {result}")
+            print(f"getal1: {getal1}")
+            print(f"getal2: {getal2}")
+            print(f"uitkomst is: {100*getal1 + getal2}")
             break
         else:
             print('nog niet t goede antwoord')
-            break
-        # print(f"getal1: {y}")
-        # print(f"getal2: {z}")
-        # print(f"uitkomst is: {100*y + z}")
 
 if __name__ == "__main__":
     main()
