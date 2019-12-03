@@ -20,25 +20,29 @@ def gaOmhoog(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[1] += int(cijfers)
     punt = [(puntlist[0], puntlist[1])]
-    return punt
+    positie = (startpositie[0], puntlist[1])
+    return punt, positie
 
 def gaOmlaag(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[1] -= int(cijfers)
     punt = [(puntlist[0], puntlist[1])]
-    return punt
+    positie = (startpositie[0], puntlist[1])
+    return punt, positie
 
 def gaLinks(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[0] -= int(cijfers)
     punt = [(puntlist[0], puntlist[1])]
-    return punt
+    positie = (puntlist[0], startpositie[1])
+    return punt, positie
 
 def gaRechts(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[0] += int(cijfers)
     punt = [(puntlist[0], puntlist[1])]
-    return punt
+    positie = (puntlist[0], startpositie[1])
+    return punt, positie
 
 def berekenPunten(letter, cijfers, startpositie):
     opties = {
@@ -48,8 +52,8 @@ def berekenPunten(letter, cijfers, startpositie):
         'R': gaRechts,
     }
     functie=opties.get(str(letter), lambda : 'Rip, er is iets mis pik')
-    punt = functie(cijfers, startpositie)
-    return punt
+    punt, positie = functie(cijfers, startpositie)
+    return punt, positie
 
 def bepaalSnijPunt(puntenLijn1, puntenLijn2):
     line1 = LineString(puntenLijn1)
@@ -70,12 +74,14 @@ def main():
         hoogsteGetal = max(cijfersLijn1)
     else:
         hoogsteGetal = max(cijfersLijn2)
-    startpositie = (1, int(hoogsteGetal) - 1)
+    positie = (1, int(hoogsteGetal) - 1)
 
     for x in range(len(lettersLijn1)):
-        puntenLijn1.extend(berekenPunten(lettersLijn1[x], cijfersLijn1[x], startpositie))
+        punt, positie = berekenPunten(lettersLijn1[x], cijfersLijn1[x], positie)
+        puntenLijn1.extend(punt)
     for x in range(len(lettersLijn2)):
-        puntenLijn2.extend(berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie))
+        punt, positie = (berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie))
+        puntenLijn2.extend(punt)
 
     print(bepaalSnijPunt(puntenLijn1, puntenLijn2))
 
