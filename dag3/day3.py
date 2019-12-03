@@ -51,12 +51,12 @@ def berekenPunten(letter, cijfers, startpositie):
     punt = functie(cijfers, startpositie)
     return punt
 
-# def bepaalSnijPunt(puntenLijn1, puntenLijn2):
-#     line1 = LineString(puntenLijn1)
-#     line2 = LineString(puntenLijn2)
-#
-#     snijpunt = line1.intersection(line2)
-#     return snijpunt
+def bepaalSnijPunt(puntenLijn1, puntenLijn2):
+    line1 = LineString(puntenLijn1)
+    line2 = LineString(puntenLijn2)
+
+    snijpunt = line1.intersection(line2)
+    return snijpunt
 
 def main():
     directions1, directions2 = OpenBestand()
@@ -73,14 +73,11 @@ def main():
     startpositie = (1, int(hoogsteGetal) - 1)
 
     for x in range(len(lettersLijn1)):
-        puntenLijn1.append(berekenPunten(lettersLijn1[x], cijfersLijn1[x], startpositie))
+        puntenLijn1 += berekenPunten(lettersLijn1[x], cijfersLijn1[x], startpositie)
     for x in range(len(lettersLijn2)):
-        puntenLijn2.append(berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie))
+        puntenLijn2 + = berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie)
 
-
-    line1 = LineString(puntenLijn1)
-    line2 = LineString(puntenLijn2)
-    print(line1.intersection(line2))
+    print(bepaalSnijPunt(puntenLijn1, puntenLijn2))
 
 if __name__ == "__main__":
     main()
