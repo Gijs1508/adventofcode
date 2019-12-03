@@ -19,25 +19,25 @@ def splitDirections(directions):
 def gaOmhoog(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[1] += int(cijfers)
-    punt = (puntlist[0], puntlist[1])
+    punt = [(puntlist[0], puntlist[1])]
     return punt
 
 def gaOmlaag(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[1] -= int(cijfers)
-    punt = (puntlist[0], puntlist[1])
+    punt = [(puntlist[0], puntlist[1])]
     return punt
 
 def gaLinks(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[0] -= int(cijfers)
-    punt = (puntlist[0], puntlist[1])
+    punt = [(puntlist[0], puntlist[1])]
     return punt
 
 def gaRechts(cijfers, startpositie):
     puntlist = [startpositie[0], startpositie[1]]
     puntlist[0] += int(cijfers)
-    punt = (puntlist[0], puntlist[1])
+    punt = [(puntlist[0], puntlist[1])]
     return punt
 
 def berekenPunten(letter, cijfers, startpositie):
