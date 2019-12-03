@@ -73,9 +73,9 @@ def main():
     startpositie = (1, int(hoogsteGetal) - 1)
 
     for x in range(len(lettersLijn1)):
-        puntenLijn1 += berekenPunten(lettersLijn1[x], cijfersLijn1[x], startpositie)
+        puntenLijn1.extend(berekenPunten(lettersLijn1[x], cijfersLijn1[x], startpositie))
     for x in range(len(lettersLijn2)):
-        puntenLijn2 + = berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie)
+        puntenLijn2.extend(berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie))
 
     print(bepaalSnijPunt(puntenLijn1, puntenLijn2))
 
