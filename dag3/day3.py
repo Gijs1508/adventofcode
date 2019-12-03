@@ -80,7 +80,7 @@ def main():
         punt, positie = berekenPunten(lettersLijn1[x], cijfersLijn1[x], positie)
         puntenLijn1.extend(punt)
     for x in range(len(lettersLijn2)):
-        punt, positie = (berekenPunten(lettersLijn2[x], cijfersLijn2[x], startpositie))
+        punt, positie = (berekenPunten(lettersLijn2[x], cijfersLijn2[x], positie))
         puntenLijn2.extend(punt)
 
     print(bepaalSnijPunt(puntenLijn1, puntenLijn2))
